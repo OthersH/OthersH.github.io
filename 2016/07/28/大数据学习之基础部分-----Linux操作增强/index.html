@@ -1,0 +1,488 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>大数据学习之基础部分-----Linux操作增强 | LXX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="LXX">
+    
+
+    
+    <meta name="description" content="防火墙配置防火墙根据配置文件/etc/sysconfig/iptables来控制本机的“出、入”网络访问行为其对行为的配置策略有四个策略表
+必备技能12345678查看防火墙状态 service iptables status关闭防火墙service iptables stop启动防火墙service iptables start禁止防火墙自启chkconfig iptables off
+扩展了解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据学习之基础部分-----Linux操作增强">
+<meta property="og:url" content="http://lxx.help/2016/07/28/大数据学习之基础部分-----Linux操作增强/index.html">
+<meta property="og:site_name" content="LXX">
+<meta property="og:description" content="防火墙配置防火墙根据配置文件/etc/sysconfig/iptables来控制本机的“出、入”网络访问行为其对行为的配置策略有四个策略表
+必备技能12345678查看防火墙状态 service iptables status关闭防火墙service iptables stop启动防火墙service iptables start禁止防火墙自启chkconfig iptables off
+扩展了解">
+<meta property="og:image" content="http://i.imgur.com/PJXDKhK.png">
+<meta property="og:updated_time" content="2016-07-28T13:44:55.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据学习之基础部分-----Linux操作增强">
+<meta name="twitter:description" content="防火墙配置防火墙根据配置文件/etc/sysconfig/iptables来控制本机的“出、入”网络访问行为其对行为的配置策略有四个策略表
+必备技能12345678查看防火墙状态 service iptables status关闭防火墙service iptables stop启动防火墙service iptables start禁止防火墙自启chkconfig iptables off
+扩展了解">
+
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.jpg" alt="LXX" title="LXX"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="LXX">LXX</a></h1>
+				<h2 class="blog-motto">Coder</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+					<!--  <form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:lxx.help">
+					</form> -->
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/28/大数据学习之基础部分-----Linux操作增强/" title="大数据学习之基础部分-----Linux操作增强" itemprop="url">大数据学习之基础部分-----Linux操作增强</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="LXX" target="_blank" itemprop="author">LXX</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-28T13:33:00.000Z" itemprop="datePublished"> 发表于 2016-07-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9632_u706B_u5899_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u7EA7_u6587_u672C_u5904_u7406_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">高级文本处理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cut_u547D_u4EE4"><span class="toc-number">2.1.</span> <span class="toc-text">cut命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed_u547D_u4EE4"><span class="toc-number">2.2.</span> <span class="toc-text">sed命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk_u547D_u4EE4"><span class="toc-number">2.3.</span> <span class="toc-text">awk命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crontab_u914D_u7F6E"><span class="toc-number">3.</span> <span class="toc-text">crontab配置</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="u9632_u706B_u5899_u914D_u7F6E"><a href="#u9632_u706B_u5899_u914D_u7F6E" class="headerlink" title="防火墙配置"></a>防火墙配置</h2><p>防火墙根据配置文件/etc/sysconfig/iptables来控制本机的“出、入”网络访问行为其对行为的配置策略有四个策略表<br><img src="http://i.imgur.com/PJXDKhK.png" alt=""></p>
+<p>必备技能<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查看防火墙状态 </span><br><span class="line">service iptables status</span><br><span class="line">关闭防火墙</span><br><span class="line">service iptables <span class="operator"><span class="keyword">stop</span></span><br><span class="line">启动防火墙</span><br><span class="line">service iptables <span class="keyword">start</span></span><br><span class="line">禁止防火墙自启</span><br><span class="line">chkconfig iptables <span class="keyword">off</span></span></span><br></pre></td></tr></table></figure></p>
+<p>扩展了解<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1、列出iptables规则</span><br><span class="line">iptables -<span class="keyword">L</span> -<span class="keyword">n</span></span><br><span class="line"></span><br><span class="line">列出iptables规则并显示规则编号</span><br><span class="line">iptables -<span class="keyword">L</span> -<span class="keyword">n</span> --<span class="keyword">line</span>-numbers</span><br><span class="line"></span><br><span class="line">2、列出iptables nat表规则（默认是filter表）</span><br><span class="line">iptables -<span class="keyword">L</span> -<span class="keyword">n</span> -t nat</span><br><span class="line"></span><br><span class="line">3、清除默认规则（注意默认是filter表，如果对nat表操作要加-t nat）</span><br><span class="line">#清除所有规则</span><br><span class="line">iptables -F </span><br><span class="line"></span><br><span class="line">#重启iptables发现规则依然存在，因为没有保存</span><br><span class="line">service iptables restart</span><br><span class="line"></span><br><span class="line">#保存配置</span><br><span class="line">service iptables <span class="keyword">save</span></span><br><span class="line"></span><br><span class="line">4、禁止ssh登陆（若果服务器在机房，一定要小心）</span><br><span class="line">iptables -A <span class="keyword">INPUT</span> -p tcp --dport 22 -j <span class="keyword">DROP</span></span><br><span class="line"></span><br><span class="line">#删除规则</span><br><span class="line">iptables -<span class="keyword">D</span> <span class="keyword">INPUT</span> -p tcp --dport 22 -j <span class="keyword">DROP</span></span><br><span class="line">iptables -t nat -<span class="keyword">D</span> PREROUTING 6</span><br><span class="line"></span><br><span class="line">加入一条<span class="keyword">INPUT</span>规则开放80端口</span><br><span class="line">iptables -I <span class="keyword">INPUT</span> -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<h2 id="u9AD8_u7EA7_u6587_u672C_u5904_u7406_u547D_u4EE4"><a href="#u9AD8_u7EA7_u6587_u672C_u5904_u7406_u547D_u4EE4" class="headerlink" title="高级文本处理命令"></a>高级文本处理命令</h2><h3 id="cut_u547D_u4EE4"><a href="#cut_u547D_u4EE4" class="headerlink" title="cut命令"></a>cut命令</h3><p>cut命令可以从一个文本文件或者文本流中提取文本列。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cut语法</span><br><span class="line">[root@www ~]<span class="comment"># cut -d'分隔字符' -f fields     ## 用于有特定分隔字符</span></span><br><span class="line">[root@www ~]<span class="comment"># cut -c 字符区间            ## 用于排列整齐的信息</span></span><br><span class="line">选项与参数：</span><br><span class="line"><span class="operator">-d</span>：后面接分隔字符。与 <span class="operator">-f</span> 一起使用；</span><br><span class="line"><span class="operator">-f</span>：依据 <span class="operator">-d</span> 的分隔字符将一段信息分割成为数段，用 <span class="operator">-f</span> 取出第几段的意思；</span><br><span class="line">-c：以字符 (characters) 的单位取出固定字符区间；</span><br></pre></td></tr></table></figure></p>
+<p>PATH 变量如下<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="preprocessor"># echo $PATH</span></span><br><span class="line"> /bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/X11R6/bin:/usr/games</span><br><span class="line"><span class="preprocessor"># <span class="number">1</span>  | <span class="number">2</span>      | <span class="number">3</span>   | <span class="number">4</span>       | <span class="number">5</span>            | <span class="number">6</span>            | <span class="number">7</span></span></span><br></pre></td></tr></table></figure></p>
+<p>将 PATH 变量取出，找出第五个路径。<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># echo $PATH | cut -d<span class="string">':'</span> -f 5</span></span><br><span class="line">/usr/<span class="keyword">local</span>/bin</span><br></pre></td></tr></table></figure></p>
+<p>将 PATH 变量取出，找出第三和第五个路径。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#echo $PATH | cut -d <span class="string">':'</span> -f <span class="number">3</span>,<span class="number">5</span></span></span><br><span class="line">/sbin:/usr/local/bin</span><br></pre></td></tr></table></figure></p>
+<p>将 PATH 变量取出，找出第三到最后一个路径。<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="variable">$PATH</span> | cut -d <span class="string">':'</span> -f <span class="number">3</span>-</span><br><span class="line"><span class="regexp">/sbin:/usr</span><span class="regexp">/sbin:/usr</span><span class="regexp">/local/bin</span><span class="symbol">:/usr/X11R6/bin</span><span class="symbol">:/usr/games</span></span><br></pre></td></tr></table></figure></p>
+<p>将 PATH 变量取出，找出第一到第三个路径。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#echo $PATH | cut -d <span class="string">':'</span> -f <span class="number">1</span>-<span class="number">3</span></span></span><br><span class="line">/bin:/usr/bin:/sbin:</span><br></pre></td></tr></table></figure></p>
+<p>将 PATH 变量取出，找出第一到第三，还有第五个路径。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#echo $PATH | cut -d <span class="string">':'</span> -f <span class="number">1</span>-<span class="number">3</span>,<span class="number">5</span></span></span><br><span class="line">/bin:/usr/bin:/sbin:/usr/local/bin</span><br></pre></td></tr></table></figure></p>
+<p>实用例子:只显示/etc/passwd的用户和shell<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#cat <span class="regexp">/etc/</span>passwd | cut -d <span class="string">':'</span> -f <span class="number">1</span>,<span class="number">7</span> </span><br><span class="line">root:<span class="regexp">/bin/</span>bash</span><br><span class="line">daemon:<span class="regexp">/bin/</span>sh</span><br><span class="line">bin:<span class="regexp">/bin/</span>sh</span><br></pre></td></tr></table></figure></p>
+<h3 id="sed_u547D_u4EE4"><a href="#sed_u547D_u4EE4" class="headerlink" title="sed命令"></a>sed命令</h3><p>1/ 删除：d命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sed <span class="string">'2d'</span> example   	 	-----删除example文件的第二行。</span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'2,$d'</span> example  	 	-----删除example文件的第二行到末尾所有行。</span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'$d'</span> example  	 	-----删除example文件的最后一行。</span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'/test/'</span>d example		-----删除example文件所有包含test的行。</span><br></pre></td></tr></table></figure></p>
+<p>2/ 替换：s命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sed <span class="string">'s/test/mytest/g'</span> example				</span><br><span class="line"><span class="comment">##  在整行范围内把test替换为mytest。如果没有g标记，则只有每行第一个匹配的test被替换成mytest。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed -n <span class="string">'s/^test/mytest/p'</span> example			</span><br><span class="line"><span class="comment">##  (-n)选项和p标志一起使用表示只打印那些发生替换的行。也就是说，如果某一行开头的test被替换成mytest，就打印它。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'s/^192.168.0.1/&amp;localhost/'</span> example		</span><br><span class="line"><span class="comment">##  &amp;符号表示追加一个串到找到的串后。所有以192.168.0.1开头的行都会被替换成它自已加 localhost，变成192.168.0.1localhost。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed -n <span class="string">'s/\(love\)able/\1rs/p'</span> example</span><br><span class="line"><span class="comment">##  love被标记为1，所有loveable会被替换成lovers，而且替换的行会被打印出来。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'s#10#100#g'</span> example</span><br><span class="line"><span class="comment">##  不论什么字符，紧跟着s命令的都被认为是新的分隔符，所以，“#”在这里是分隔符，代替了默认的“/”分隔符。表示把所有10替换成100。</span></span><br><span class="line">选定行的范围：逗号</span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed -n <span class="string">'/test/,/check/p'</span> example</span><br><span class="line"><span class="comment">## 所有在模板test和check所确定的范围内的行都被打印。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed -n <span class="string">'5,/^test/p'</span> example</span><br><span class="line"><span class="comment">## 打印从第五行开始到第一个包含以test开始的行之间的所有行。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed <span class="string">'/test/,/check/s/$/sed test/'</span> example</span><br><span class="line"><span class="comment">## 对于模板test和west之间的行，每行的末尾用字符串sed test替换。</span></span><br><span class="line">多点编辑：e命令</span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed -e <span class="string">'1,5d'</span> -e <span class="string">'s/test/check/'</span> example</span><br><span class="line"><span class="comment">##  (-e)选项允许在同一行里执行多条命令。如例子所示，第一条命令删除1至5行，第二条命令用check替换test。命令的执行顺序对结果有影响。如果两个命令都是替换命令，那么第一个替换命令将影响第二个替换命令的结果。</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$ </span>sed --expression=<span class="string">'s/test/check/'</span> --expression=<span class="string">'/love/d'</span> example</span><br><span class="line"><span class="comment">## 一个比-e更好的命令是--expression。它能给sed表达式赋值。</span></span><br></pre></td></tr></table></figure></p>
+<p>3/ 从文件读入：r命令<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed '/<span class="keyword">test</span>/r <span class="keyword">file</span>' example</span><br><span class="line"><span class="keyword">file</span>里的内容被读进来，显示在与<span class="keyword">test</span>匹配的行后面，如果匹配多行，则<span class="keyword">file</span>的内容将显示在所有匹配行的下面。</span><br></pre></td></tr></table></figure></p>
+<p>4/ 写入文件：w命令<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed -<span class="keyword">n</span> '/<span class="keyword">test</span>/w <span class="keyword">file</span>' example</span><br><span class="line">在example中所有包含<span class="keyword">test</span>的行都被写入<span class="keyword">file</span>里。</span><br></pre></td></tr></table></figure></p>
+<p>5/ 追加命令：a命令<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed '/^test/a\\<span class="comment">---&gt;this is a example' example    </span></span><br><span class="line"><span class="comment">##  '---&gt;this is a example'被追加到以test开头的行后面，sed要求命令a后面有一个反斜杠。</span></span><br></pre></td></tr></table></figure></p>
+<p>6/ 插入：i命令<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed '/test/i\\<span class="keyword">some</span> thing new <span class="comment">-------------------------' example</span></span><br><span class="line">如果test被匹配，则把反斜杠后面的文本插入到匹配行的前面。</span><br></pre></td></tr></table></figure></p>
+<p>7/ 下一个：n命令<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed '/<span class="keyword">test</span>/&#123; <span class="keyword">n</span>; s/aa/bb/; &#125;' example</span><br><span class="line">如果<span class="keyword">test</span>被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续。</span><br></pre></td></tr></table></figure></p>
+<p>8/ 退出：q命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sed <span class="string">'10q'</span> example</span><br><span class="line">打印完第<span class="number">10</span>行后，退出sed。</span><br></pre></td></tr></table></figure></p>
+<h3 id="awk_u547D_u4EE4"><a href="#awk_u547D_u4EE4" class="headerlink" title="awk命令"></a>awk命令</h3><p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">假设last -<span class="keyword">n</span> 5的输出如下</span><br><span class="line">[root@www ~]# last -<span class="keyword">n</span> 5        ## 仅取出前五行</span><br><span class="line">root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged <span class="keyword">in</span></span><br><span class="line">root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)</span><br><span class="line">root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)</span><br><span class="line">dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)</span><br><span class="line">root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)</span><br><span class="line"></span><br><span class="line">如果只是显示最近登录的5个帐号</span><br><span class="line"># last -<span class="keyword">n</span> 5 | awk  '&#123;<span class="keyword">print</span> <span class="label">$1&#125;</span>'</span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">root</span><br><span class="line">dmtsai</span><br><span class="line">root</span><br><span class="line"></span><br><span class="line">awk工作流程是这样的：读入有'\<span class="keyword">n</span>'换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，<span class="label">$0</span>则表示所有域,<span class="label">$1</span>表示第一个域,<span class="label">$n</span>表示第<span class="keyword">n</span>个域。默认域分隔符是<span class="string">"空白键"</span> 或 <span class="string">"[tab]键"</span>,所以<span class="label">$1</span>表示登录用户，<span class="label">$3</span>表示登录用户ip,以此类推。</span><br></pre></td></tr></table></figure></p>
+<p>如果只是显示/etc/passwd的账户<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># cat /etc/passwd |awk  -F <span class="string">':'</span>  <span class="string">'&#123;print $1&#125;'</span>  </span></span><br><span class="line">root</span><br><span class="line">daemon</span><br><span class="line">bin</span><br><span class="line">sys</span><br><span class="line">这种是awk+action的示例，每行都会执行action&#123;print <span class="variable">$1</span>&#125;。</span><br><span class="line">-F指定域分隔符为<span class="string">':'</span></span><br></pre></td></tr></table></figure></p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以tab键分割<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">cat</span> /etc/passwd |awk  -F ':'  '&#123;<span class="keyword">print</span> <span class="label">$1</span><span class="string">"\t"</span><span class="label">$7&#125;</span>'</span><br><span class="line">root    /bin/bash</span><br><span class="line">daemon  /bin/<span class="keyword">sh</span></span><br><span class="line">bin     /bin/<span class="keyword">sh</span></span><br><span class="line">sys     /bin/<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+<p>如果只是显示/etc/passwd的账户和账户对应的shell,而账户与shell之间以逗号分割,而且在所有行添加列名name,shell,在最后一行添加”blue,/bin/noh”。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> /etc/passwd |awk  -F ':'  'BEGIN &#123;<span class="keyword">print</span> <span class="string">"name,shell"</span>&#125;  &#123;<span class="keyword">print</span> <span class="label">$1</span><span class="string">","</span><span class="label">$7&#125;</span> END &#123;<span class="keyword">print</span> <span class="string">"blue,/bin/nosh"</span>&#125;'</span><br><span class="line">name,<span class="keyword">shell</span></span><br><span class="line">root,/bin/bash</span><br><span class="line">daemon,/bin/<span class="keyword">sh</span></span><br><span class="line">bin,/bin/<span class="keyword">sh</span></span><br><span class="line">sys,/bin/<span class="keyword">sh</span></span><br><span class="line">....</span><br><span class="line">blue,/bin/nosh</span><br><span class="line"> </span><br><span class="line">awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/<span class="keyword">n</span>换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，<span class="label">$0</span>则表示所有域,<span class="label">$1</span>表示第一个域,<span class="label">$n</span>表示第<span class="keyword">n</span>个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</span><br></pre></td></tr></table></figure></p>
+<p>搜索/etc/passwd有root关键字的所有行<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#awk</span>  -F:  <span class="string">'/root/'</span>  /etc/passwd</span><br><span class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</span><br><span class="line">这种是pattern的使用示例，匹配了<span class="function"><span class="title">pattern</span><span class="params">(这里是root)</span></span>的行才会执行<span class="function"><span class="title">action</span><span class="params">(没有指定action，默认输出每行的内容)</span></span>。</span><br></pre></td></tr></table></figure></p>
+<p>搜索支持正则<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">找root开头的: awk -F:  <span class="string">'/^root/'</span>  <span class="regexp">/etc/</span>passwd</span><br><span class="line">搜索<span class="regexp">/etc/</span>passwd有root关键字的所有行，并显示对应的shell</span><br><span class="line"># awk  -F<span class="string">':'</span>  <span class="string">'/root/&#123;print $7&#125;'</span>  <span class="regexp">/etc/</span>passwd             </span><br><span class="line"><span class="regexp">/bin/</span>bash</span><br><span class="line">这里指定了action&#123;<span class="keyword">print</span> $<span class="number">7</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<p>统计/etc/passwd:文件名，每行的行号，每行的列数，对应的完整行内容:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#awk  -F ':'  '&#123;print "filename:" FILENAME ",linenumber:" NR ",columns:" NF ",linecontent:"$0&#125;' /etc/passwd</span></span><br><span class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">1</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">root:</span><span class="symbol">x:</span><span class="number">0</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:root</span><span class="symbol">:/root</span><span class="symbol">:/bin/bash</span></span><br><span class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">2</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">daemon:</span><span class="symbol">x:</span><span class="number">1</span><span class="symbol">:</span><span class="number">1</span><span class="symbol">:daemon</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/bin/sh</span></span><br><span class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">3</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">bin:</span><span class="symbol">x:</span><span class="number">2</span><span class="symbol">:</span><span class="number">2</span><span class="symbol">:bin</span><span class="symbol">:/bin</span><span class="symbol">:/bin/sh</span></span><br><span class="line"><span class="symbol">filename:</span>/etc/passwd,<span class="symbol">linenumber:</span><span class="number">4</span>,<span class="symbol">columns:</span><span class="number">7</span>,<span class="symbol">linecontent:</span><span class="symbol">sys:</span><span class="symbol">x:</span><span class="number">3</span><span class="symbol">:</span><span class="number">3</span><span class="symbol">:sys</span><span class="symbol">:/dev</span><span class="symbol">:/bin/sh</span></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">使用printf替代print,可以让代码更加简洁，易读</span><br><span class="line"> awk  -<span class="constant">F </span><span class="string">':'</span>  <span class="string">'&#123;printf("filename:%s,linenumber:%s,columns:%s,linecontent:%s\n",FILENAME,NR,NF,$0)&#125;'</span> /etc/passwd</span><br></pre></td></tr></table></figure></p>
+<h2 id="crontab_u914D_u7F6E"><a href="#crontab_u914D_u7F6E" class="headerlink" title="crontab配置"></a>crontab配置</h2><p>命令功能<br>通过crontab 命令，我们可以在固定的间隔时间执行指定的系统指令或 shell script脚本。时间间隔的单位可以是分钟、小时、日、月、周及以上的任意组合。这个命令非常适合周期性的日志分析或数据备份等工作。<br>安装crontab<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">yum install crontabs</span><br><span class="line">服务操作说明：</span><br><span class="line">/sbin/service crond <span class="built_in">start</span>  	<span class="comment">## 启动服务</span></span><br><span class="line">/sbin/service crond <span class="built_in">stop</span>  	<span class="comment">## 关闭服务</span></span><br><span class="line">/sbin/service crond restart	<span class="comment">## 重启服务</span></span><br><span class="line">/sbin/service crond reload  <span class="comment">## 重新载入配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看crontab服务状态：</span></span><br><span class="line">service crond status</span><br><span class="line"></span><br><span class="line"><span class="comment">## 手动启动crontab服务：</span></span><br><span class="line">service crond <span class="built_in">start</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看crontab服务是否已设置为开机启动，执行命令：</span></span><br><span class="line">chkconfig <span class="comment">--list</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 加入开机自动启动：</span></span><br><span class="line">chkconfig  <span class="comment">--level 35 crond on</span></span><br></pre></td></tr></table></figure></p>
+<p>命令格式<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">crontab [-<span class="keyword">u</span> user] <span class="keyword">file</span></span><br><span class="line">crontab [-<span class="keyword">u</span> user] [ -<span class="keyword">e</span> | -<span class="keyword">l</span> | -r ]</span><br><span class="line"></span><br><span class="line">参数说明：</span><br><span class="line">-<span class="keyword">u</span> user：用来设定某个用户的crontab服务，例如，“-<span class="keyword">u</span> ixdba”表示设定ixdba用户的crontab服务，此参数一般有root用户来运行。</span><br><span class="line"><span class="keyword">file</span>：<span class="keyword">file</span>是命令文件的名字,表示将<span class="keyword">file</span>做为crontab的任务列表文件并载入crontab。</span><br><span class="line">-<span class="keyword">e</span>：编辑某个用户的crontab文件内容。如果不指定用户，则表示编辑当前用户的crontab文件。</span><br><span class="line">-<span class="keyword">l</span>：显示某个用户的crontab文件内容，如果不指定用户，则表示显示当前用户的crontab文件内容。</span><br><span class="line">-r：删除定时任务配置，从/<span class="keyword">var</span>/spool/cron目录中删除某个用户的crontab文件，如果不指定用户，则默认删除当前用户的crontab文件。</span><br><span class="line">-i：在删除用户的crontab文件时给确认提示。</span><br><span class="line"></span><br><span class="line">命令示例：</span><br><span class="line">crontab <span class="keyword">file</span> [-<span class="keyword">u</span> user]	    ## 用指定的文件替代目前的crontab。 </span><br><span class="line">crontab -<span class="keyword">l</span> [-<span class="keyword">u</span> user]		## 列出用户目前的crontab. </span><br><span class="line">crontab -<span class="keyword">e</span> [-<span class="keyword">u</span> user]		## 编辑用户目前的crontab.</span><br></pre></td></tr></table></figure></p>
+<p>调度配置<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">配置说明</span><br><span class="line">基本格式 : </span><br><span class="line">*　　*　　*　　*　　*　　command </span><br><span class="line">分　 时　 日　 月　 周　 命令 </span><br><span class="line">第<span class="number">1</span>列表示分钟<span class="number">1</span>～<span class="number">59</span> 每分钟用*或者 */<span class="number">1</span>表示 </span><br><span class="line">第<span class="number">2</span>列表示小时<span class="number">0</span>～<span class="number">23</span>（<span class="number">0</span>表示<span class="number">0</span>点） <span class="number">7</span>-<span class="number">9</span>表示：<span class="number">8</span>点到<span class="number">10</span>点之间</span><br><span class="line">第<span class="number">3</span>列表示日期<span class="number">1</span>～<span class="number">31</span> </span><br><span class="line">第<span class="number">4</span>列表示月份<span class="number">1</span>～<span class="number">12</span> </span><br><span class="line">第<span class="number">5</span>列标识号星期<span class="number">0</span>～<span class="number">6</span>（<span class="number">0</span>表示星期天） </span><br><span class="line">第<span class="number">6</span>列要运行的命令</span><br><span class="line"></span><br><span class="line">配置示例</span><br><span class="line"><span class="number">30</span> <span class="number">21</span> * * * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子表示每晚的<span class="number">21</span>:<span class="number">30</span>重启apache。 </span><br><span class="line"><span class="number">45</span> <span class="number">4</span> <span class="number">1</span>,<span class="number">10</span>,<span class="number">22</span> * * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子表示每月<span class="number">1</span>、<span class="number">10</span>、<span class="number">22</span>日的<span class="number">4</span> : <span class="number">45</span>重启apache。 </span><br><span class="line"><span class="number">10</span> <span class="number">1</span> * * <span class="number">6</span>,<span class="number">0</span> /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子表示每周六、周日的<span class="number">1</span> : <span class="number">10</span>重启apache。 </span><br><span class="line"><span class="number">0</span>,<span class="number">30</span> <span class="number">18</span>-<span class="number">23</span> * * * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子表示在每天<span class="number">18</span> : <span class="number">00</span>至<span class="number">23</span> : <span class="number">00</span>之间每隔<span class="number">30</span>分钟重启apache。 </span><br><span class="line"><span class="number">0</span> <span class="number">23</span> * * <span class="number">6</span> /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子表示每星期六的<span class="number">11</span> : <span class="number">00</span> pm重启apache。 </span><br><span class="line">* */<span class="number">1</span> * * * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子每一小时重启apache </span><br><span class="line">* <span class="number">23</span>-<span class="number">7</span>/<span class="number">1</span> * * * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子晚上<span class="number">11</span>点到早上<span class="number">7</span>点之间，每隔一小时重启apache </span><br><span class="line"><span class="number">0</span> <span class="number">11</span> <span class="number">4</span> * mon-wed /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子每月的<span class="number">4</span>号与每周一到周三的<span class="number">11</span>点重启apache </span><br><span class="line"><span class="number">0</span> <span class="number">4</span> <span class="number">1</span> jan * /usr/local/etc/rc.d/httpd restart </span><br><span class="line">上面的例子一月一号的<span class="number">4</span>点重启apache</span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/大数据/">大数据</a>►<a class="article-category-link" href="/categories/大数据/linux/">linux</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/大数据/">大数据</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://lxx.help/2016/07/28/大数据学习之基础部分-----Linux操作增强/" data-title="大数据学习之基础部分-----Linux操作增强 | LXX" data-tsina="2824584731" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/27/大数据学习之基础部分-----Linux常用软件安装/"  title="大数据学习之基础部分-----Linux常用软件安装">
+ <strong>下一篇：</strong><br/> 
+ <span>大数据学习之基础部分-----Linux常用软件安装
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/28/大数据学习之基础部分-----Linux操作增强/" data-title="大数据学习之基础部分-----Linux操作增强" data-url="http://lxx.help/2016/07/28/大数据学习之基础部分-----Linux操作增强/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u9632_u706B_u5899_u914D_u7F6E"><span class="toc-number">1.</span> <span class="toc-text">防火墙配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u7EA7_u6587_u672C_u5904_u7406_u547D_u4EE4"><span class="toc-number">2.</span> <span class="toc-text">高级文本处理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cut_u547D_u4EE4"><span class="toc-number">2.1.</span> <span class="toc-text">cut命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed_u547D_u4EE4"><span class="toc-number">2.2.</span> <span class="toc-text">sed命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk_u547D_u4EE4"><span class="toc-number">2.3.</span> <span class="toc-text">awk命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crontab_u914D_u7F6E"><span class="toc-number">3.</span> <span class="toc-text">crontab配置</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/大数据/linux/" title="linux">linux<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/大数据/" title="大数据">大数据<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/linux/" title="linux">linux<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2824584731&verifier=09e391bf&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 我是一个菜 <br/>
+			      名叫技术菜</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2824584731" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:41486661@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="LXX">LXX</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"others"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258450628'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1258450628' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
